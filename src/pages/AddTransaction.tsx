@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { storage } from '@/lib/storage';
 import { Transaction, Category } from '@/types/financial';
+import PageHeader from '@/components/PageHeader';
 
 export default function AddTransaction() {
   const navigate = useNavigate();
@@ -193,10 +194,11 @@ export default function AddTransaction() {
           <ArrowLeft className="h-4 w-4 mr-2" />
           Voltar
         </Button>
-        <div>
-          <h1 className="text-2xl font-bold">Adicionar Transação</h1>
-          <p className="text-muted-foreground">Registre suas receitas e despesas</p>
-        </div>
+        <PageHeader
+          title="Adicionar Transação"
+          description="Registre suas receitas e despesas"
+          icon={Plus}
+        />
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">

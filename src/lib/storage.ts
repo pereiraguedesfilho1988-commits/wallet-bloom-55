@@ -2,6 +2,11 @@
 
 import { Transaction, Goal, User, Budget, Category, DEFAULT_CATEGORIES } from '@/types/financial';
 
+export interface ThemeSettings {
+  theme: 'default' | 'masculine' | 'feminine';
+  colorMode: 'light' | 'dark';
+}
+
 const STORAGE_KEYS = {
   TRANSACTIONS: 'minha-conta-transactions',
   GOALS: 'minha-conta-goals',
@@ -9,6 +14,7 @@ const STORAGE_KEYS = {
   BUDGETS: 'minha-conta-budgets',
   CATEGORIES: 'minha-conta-categories',
   CURRENT_USER: 'minha-conta-current-user',
+  THEME_SETTINGS: 'minha-conta-theme-settings',
   APP_VERSION: 'minha-conta-version'
 } as const;
 
@@ -206,6 +212,16 @@ class FinancialStorage {
       localStorage.removeItem(key);
     });
     this.initializeStorage();
+  }
+
+  // Theme Settings
+  getThemeSettings(): ThemeSettings | null {
+    const data = localStorage.getItem(STORAGE_KEYS.THEME_SETTINGS);
+    return data ? JSON.parse(data) : null;
+  }
+
+  saveThemeSettings(settings: ThemeSettings): void {
+    localStorage.setItem(STORAGE_KEYS.THEME_SETTINGS, JSON.stringify(settings));
   }
 }
 

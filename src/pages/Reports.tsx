@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { storage } from '@/lib/storage';
 import { Transaction, Category } from '@/types/financial';
+import PageHeader from '@/components/PageHeader';
 
 interface FilterOptions {
   period: 'week' | 'month' | 'quarter' | 'year' | 'custom';
@@ -213,22 +214,16 @@ export default function Reports() {
   return (
     <div className="p-4 lg:p-8 space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between space-y-4 lg:space-y-0">
-        <div>
-          <h1 className="text-2xl lg:text-3xl font-bold flex items-center space-x-2">
-            <PieChart className="h-8 w-8 text-secondary" />
-            <span>Relatórios</span>
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Análise detalhada das suas finanças
-          </p>
-        </div>
-        
+      <PageHeader
+        title="Relatórios"
+        description="Análise detalhada das suas finanças"
+        icon={PieChart}
+      >
         <Button onClick={exportToCSV} variant="outline">
           <Download className="h-4 w-4 mr-2" />
           Exportar CSV
         </Button>
-      </div>
+      </PageHeader>
 
       {/* Filters */}
       <Card className="financial-card">

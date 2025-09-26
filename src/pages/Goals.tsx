@@ -13,6 +13,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useToast } from '@/hooks/use-toast';
 import { storage } from '@/lib/storage';
 import { Goal } from '@/types/financial';
+import PageHeader from '@/components/PageHeader';
 
 export default function Goals() {
   const { toast } = useToast();
@@ -202,22 +203,15 @@ export default function Goals() {
 
   const activeGoals = goals.filter(g => g.isActive);
   const completedGoals = goals.filter(g => g.currentAmount >= g.targetAmount);
-  const inactiveGoals = goals.filter(g => !g.isActive);
 
   return (
     <div className="p-4 lg:p-8 space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl lg:text-3xl font-bold flex items-center space-x-2">
-            <Target className="h-8 w-8 text-goal" />
-            <span>Minhas Metas</span>
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Defina objetivos financeiros e acompanhe seu progresso
-          </p>
-        </div>
-
+      <PageHeader
+        title="Minhas Metas"
+        description="Defina objetivos financeiros e acompanhe seu progresso"
+        icon={Target}
+      >
         <Dialog open={isDialogOpen} onOpenChange={(open) => {
           setIsDialogOpen(open);
           if (!open) resetForm();
@@ -307,7 +301,7 @@ export default function Goals() {
             </form>
           </DialogContent>
         </Dialog>
-      </div>
+      </PageHeader>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

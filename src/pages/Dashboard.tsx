@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, TrendingUp, TrendingDown, Target, Calendar, Eye, EyeOff } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown, Target, Calendar, Eye, EyeOff, Home } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { storage } from '@/lib/storage';
 import { Transaction, Goal } from '@/types/financial';
+import PageHeader from '@/components/PageHeader';
 
 export default function Dashboard() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -73,21 +74,17 @@ export default function Dashboard() {
   return (
     <div className="p-4 lg:p-8 space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-foreground">
-            Olá, {currentUser?.name || 'Usuário'}! 👋
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Aqui está seu resumo financeiro de hoje
-          </p>
-        </div>
+      <PageHeader
+        title={`Olá, ${currentUser?.name || 'Usuário'}! 👋`}
+        description="Aqui está seu resumo financeiro de hoje"
+        icon={Home}
+      >
         <Link to="/add-transaction">
           <Button className="fab lg:relative lg:bottom-auto lg:right-auto">
             <Plus className="h-6 w-6" />
           </Button>
         </Link>
-      </div>
+      </PageHeader>
 
       {/* Financial Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

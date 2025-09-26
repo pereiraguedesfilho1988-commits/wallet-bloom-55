@@ -1,16 +1,20 @@
 // 💰 Minha Conta - Settings Page
 
 import { useState, useRef } from 'react';
-import { Settings as SettingsIcon, Download, Upload, Trash2, RefreshCw, Database, FileText, Shield } from 'lucide-react';
+import { Settings as SettingsIcon, Download, Upload, Trash2, RefreshCw, Database, FileText, Shield, Palette, Sun, Moon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
+import { useTheme } from '@/contexts/ThemeContext';
 import { storage } from '@/lib/storage';
+import PageHeader from '@/components/PageHeader';
 
 export default function Settings() {
   const { toast } = useToast();
+  const { theme, colorMode, setTheme, setColorMode } = useTheme();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
@@ -133,15 +137,86 @@ export default function Settings() {
   return (
     <div className="p-4 lg:p-8 space-y-6 animate-fade-in">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl lg:text-3xl font-bold flex items-center space-x-2">
-          <SettingsIcon className="h-8 w-8 text-muted-foreground" />
-          <span>Configurações</span>
-        </h1>
-        <p className="text-muted-foreground mt-1">
-          Gerencie seus dados e configurações do aplicativo
-        </p>
-      </div>
+      <PageHeader
+        title="Configurações"
+        description="Gerencie seus dados e configurações do aplicativo"
+        icon={SettingsIcon}
+      />
+
+      {/* Theme Settings */}
+      <Card className="financial-card">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Palette className="h-5 w-5" />
+            <span>Aparência</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Tema de Cores</Label>
+              <Select value={theme} onValueChange={(value: any) => setTheme(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-green-500 to-blue-500"></div>
+                      <span>Padrão</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="masculine">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-600 to-slate-600"></div>
+                      <span>Masculino (Azul/Cinza)</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="feminine">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500"></div>
+                      <span>Feminino (Rosa/Roxo)</span>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="space-y-2">
+              <Label>Modo de Cor</Label>
+              <Select value={colorMode} onValueChange={(value: any) => setColorMode(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">
+                    <div className="flex items-center space-x-2">
+                      <Sun className="h-4 w-4" />
+                      <span>Claro</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="dark">
+                    <div className="flex items-center space-x-2">
+                      <Moon className="h-4 w-4" />
+                      <span>Escuro</span>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          
+          <div className="p-4 bg-muted/30 rounded-lg">
+            <p className="text-sm text-muted-foreground">
+              🎨 <strong>Prévia:</strong> Seu tema atual é <strong>{
+                theme === 'default' ? 'Padrão' : 
+                theme === 'masculine' ? 'Masculino' : 'Feminino'
+              }</strong> no modo <strong>{colorMode === 'light' ? 'Claro' : 'Escuro'}</strong>.
+              As mudanças são aplicadas automaticamente!
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Storage Statistics */}
       <Card className="financial-card">

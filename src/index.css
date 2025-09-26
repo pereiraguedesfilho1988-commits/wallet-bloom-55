@@ -5,8 +5,8 @@
 /* 💰 Minha Conta - Financial App Design System */
 
 @layer base {
-  :root {
-    /* Modern Financial App Color Palette */
+  /* Default Theme - Modern Financial App */
+  :root, .theme-default {
     --background: 240 10% 98%;
     --foreground: 240 10% 8%;
 
@@ -54,21 +54,160 @@
     --ring: 142 76% 36%;
 
     --radius: 0.75rem;
+  }
 
+  /* Masculine Theme - Blues and Greens */
+  .theme-masculine {
+    --background: 220 15% 97%;
+    --foreground: 220 15% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 8%;
+
+    /* Primary - Deep Blue */
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 45%;
+
+    /* Secondary - Steel Blue */
+    --secondary: 210 34% 52%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Income - Forest Green */
+    --income: 158 64% 35%;
+    --income-foreground: 0 0% 100%;
+    --income-light: 158 64% 92%;
+
+    /* Expense - Deep Red */
+    --expense: 4 90% 55%;
+    --expense-foreground: 0 0% 100%;
+    --expense-light: 4 90% 95%;
+
+    /* Goal - Navy Blue */
+    --goal: 228 84% 45%;
+    --goal-foreground: 0 0% 100%;
+    --goal-light: 228 84% 95%;
+
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 8% 46%;
+
+    --accent: 220 13% 95%;
+    --accent-foreground: 220 15% 8%;
+
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 217 91% 35%;
+  }
+
+  /* Feminine Theme - Pinks and Purples */
+  .theme-feminine {
+    --background: 315 15% 97%;
+    --foreground: 315 15% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 315 15% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 315 15% 8%;
+
+    /* Primary - Rose Pink */
+    --primary: 330 81% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 330 81% 70%;
+
+    /* Secondary - Lavender */
+    --secondary: 270 50% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Income - Mint Green */
+    --income: 150 60% 45%;
+    --income-foreground: 0 0% 100%;
+    --income-light: 150 60% 92%;
+
+    /* Expense - Coral */
+    --expense: 12 88% 65%;
+    --expense-foreground: 0 0% 100%;
+    --expense-light: 12 88% 95%;
+
+    /* Goal - Purple */
+    --goal: 285 85% 60%;
+    --goal-foreground: 0 0% 100%;
+    --goal-light: 285 85% 95%;
+
+    --muted: 315 12% 95%;
+    --muted-foreground: 315 8% 46%;
+
+    --accent: 315 12% 95%;
+    --accent-foreground: 315 15% 8%;
+
+    --border: 315 12% 88%;
+    --input: 315 12% 88%;
+    --ring: 330 81% 60%;
+  }
+
+  /* Dark mode variations */
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 240 5% 95%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 240 5% 95%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 240 5% 95%;
+
+    --primary: 142 76% 50%;
+    --primary-foreground: 240 10% 4%;
+    --primary-glow: 142 76% 60%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 240 5% 95%;
+
+    --income: 142 84% 50%;
+    --income-foreground: 240 10% 4%;
+    --income-light: 142 84% 15%;
+
+    --expense: 0 84% 65%;
+    --expense-foreground: 240 10% 4%;
+    --expense-light: 0 84% 15%;
+
+    --goal: 262 83% 65%;
+    --goal-foreground: 240 10% 4%;
+    --goal-light: 262 83% 15%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 4% 16%;
+    --accent-foreground: 240 5% 95%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 240 5% 95%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 142 76% 50%;
+  }
+
+  /* Common theme variables */
+  :root {
     /* Custom Financial Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-income: linear-gradient(135deg, hsl(var(--income)), hsl(142 84% 52%));
-    --gradient-expense: linear-gradient(135deg, hsl(var(--expense)), hsl(0 84% 68%));
-    --gradient-goal: linear-gradient(135deg, hsl(var(--goal)), hsl(262 83% 68%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(240 5% 98%));
-    --gradient-dashboard: linear-gradient(135deg, hsl(240 10% 98%), hsl(213 94% 95%));
+    --gradient-income: linear-gradient(135deg, hsl(var(--income)), hsl(var(--income) / 0.8));
+    --gradient-expense: linear-gradient(135deg, hsl(var(--expense)), hsl(var(--expense) / 0.8));
+    --gradient-goal: linear-gradient(135deg, hsl(var(--goal)), hsl(var(--goal) / 0.8));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted) / 0.3));
+    --gradient-dashboard: linear-gradient(135deg, hsl(var(--background)), hsl(var(--secondary) / 0.1));
 
     /* Shadows with Financial Colors */
     --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.3);
     --shadow-income: 0 8px 25px -8px hsl(var(--income) / 0.25);
     --shadow-expense: 0 8px 25px -8px hsl(var(--expense) / 0.25);
     --shadow-goal: 0 8px 25px -8px hsl(var(--goal) / 0.25);
-    --shadow-card: 0 4px 20px -4px hsl(240 10% 20% / 0.1);
+    --shadow-card: 0 4px 20px -4px hsl(var(--foreground) / 0.1);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

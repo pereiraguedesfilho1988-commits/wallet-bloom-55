@@ -6,13 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { storage } from '@/lib/storage';
 import { User as UserType, Transaction } from '@/types/financial';
+import PageHeader from '@/components/PageHeader';
 
 const AVATAR_OPTIONS = [
   '👤', '👨', '👩', '🧑', '👦', '👧', '👴', '👵',
@@ -232,17 +232,11 @@ export default function Family() {
   return (
     <div className="p-4 lg:p-8 space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl lg:text-3xl font-bold flex items-center space-x-2">
-            <Users className="h-8 w-8 text-secondary" />
-            <span>Gestão Familiar</span>
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Gerencie os perfis da família e acompanhe gastos individuais
-          </p>
-        </div>
-
+      <PageHeader
+        title="Gestão Familiar"
+        description="Gerencie os perfis da família e acompanhe gastos individuais"
+        icon={Users}
+      >
         <Dialog open={isDialogOpen} onOpenChange={(open) => {
           setIsDialogOpen(open);
           if (!open) resetForm();
@@ -320,7 +314,7 @@ export default function Family() {
             </form>
           </DialogContent>
         </Dialog>
-      </div>
+      </PageHeader>
 
       {/* Family Summary */}
       <Card className="financial-card">
